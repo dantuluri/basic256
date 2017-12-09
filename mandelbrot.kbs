@@ -1,0 +1,51 @@
+rem Zoomable Mandelbrot based in Joel Kahn's example
+sz=600
+font "arial",10,100
+graphsize sz,sz
+fastgraphics
+kt=50:m=4.0
+xmin=-2.1:xmax=.6:ymin=-1.5:ymax=1.5
+gosub draw
+input "press enter to zoom in",a$
+xmin=-0.5:xmax=0:ymin=0.5:ymax=1
+gosub draw
+input "press enter to zoom in",a$
+xmin=-0.15:xmax=-.05:ymin=0.9:ymax=1
+gosub draw
+input "press enter to zoom in ",a$
+xmin=-0.14:xmax=-.13:ymin=0.98:ymax=.99
+gosub draw
+end
+ 
+draw:
+clg
+refresh
+dx=(xmax-xmin)/sz:dy=(ymax-ymin)/sz
+for x=xmin to xmax step dx
+for y=ymin to ymax step dy
+k=0:a=0:b=0
+do
+# In the iteration z=z^2+c
+#z=ai + b
+#c=yi + x
+tx=a^2-b^2+x
+b=2*b*a+y
+a=tx
+d=a^2+b^2
+k=k+1
+until not (d <= m and k < kt)
+color k*50000000
+plot (x-xmin)/dx,(ymax-y)/dy
+next y
+refresh
+next x
+# grid
+color black
+for n= 0 to 9
+line n*sz/10,sz,n*sz/10,0
+text n*sz/10,5,xmin+(xmax-xmin)*n/10
+text 5,n*sz/10,ymax-(ymax-ymin)*n/10
+line sz,n*sz/10,0,n*sz/10
+next n
+refresh
+return 

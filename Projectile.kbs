@@ -1,0 +1,22 @@
+clg
+fastgraphics
+rem Initial variables
+speed = 70 :gravity = 9.81
+angle=70: height=0 :h1=0 :distance=0
+t=0:dt=0.005
+
+angle=pi*angle/180
+hspeed = speed*cos(angle)
+vspeed = speed*sin(angle)
+while height>=h1
+clg
+t=t+dt : h1=height
+vspeed = vspeed - gravity*dt
+height = height + vspeed*dt
+distance = distance + hspeed*dt
+circle distance,300-height,3
+text 10,10 ,"Time "+t
+text 10,20, "Height "+height
+text 10,30 ,"Distance "+distance
+refresh
+end while 

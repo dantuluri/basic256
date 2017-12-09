@@ -1,0 +1,54 @@
+clg
+print " the inventor of laserpenguin presents the creations of little kungfu PANDA"
+if 1=1 then
+ say "the inventor of laserpenguin " 
+  color black
+  circle 100,190,100
+
+  color white
+  circle 100,100,60 
+  circle 80,200,18
+  circle 180,200,18
+ pause 1.
+  color black
+  circle 175,270,25
+  circle 25,270,25
+  circle 75,95,15
+  circle 130,95,15
+
+  color white
+  circle 80,95,5
+  circle 135,95,5
+
+ pause.9
+  color black
+  circle 80,125,10
+  circle 85,129,10
+   say "kung fu panda"
+  circle 70,50,15
+  circle 140,50,15
+ pause 1.
+  color green
+  circle 250,120,50
+
+color cyan
+circle 250,120,30
+
+
+ color  yellow
+  line 250,750,250,90
+say"cool balloon"
+endif
+
+
+
+
+
+
+
+
+
+
+
+
+

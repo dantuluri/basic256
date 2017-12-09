@@ -1,0 +1,18 @@
+clg
+
+x1=80
+y1=70
+d =200
+angle = 90
+for s = 1 to 200
+gosub lines
+angle = angle + 111
+next s
+lines:
+r = (angle/180)*3.14159
+y2=y1 + (sin (r))*d
+x2=x1 - (cos (r))*d
+line x1,y1,x2,y2
+x1=x2
+y1=y2
+return

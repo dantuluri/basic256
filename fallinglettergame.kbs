@@ -1,0 +1,53 @@
+# fallinglettergame.kbs
+speed = .15 # drop speed - lower to make faster
+nletters = 10 # letters to play
+score = 0
+misses = 0
+color black
+fastgraphics
+clg
+font "Tahoma", 20, 50
+text 20, 80, "Falling Letter Game"
+text 20, 140, "Press Any Key to Start"
+refresh
+# clear keyboard and wait for any key to be pressed
+k = key
+while key = 0
+pause speed
+end while
+for n = 1 to nletters
+letter = int((rand * 26)) + asc("A")
+x = 10 + rand * 225
+for y = 0 to 250 step 20
+clg
+# show letter
+font "Tahoma", 20, 50
+text x, y, chr(letter)
+# show score and points
+font "Tahoma", 12, 50
+value = (250 - y)
+text 10, 270, "Value "+ value
+text 200, 270, "Score "+ score
+refresh
+k = key
+if k <> 0 then
+if k = letter then
+score = score + value
+else
+score = score - value
+end if
+goto nextletter
+end if
+pause speed
+next y
+misses = misses + 1
+nextletter:
+next n
+clg
+font "Tahoma", 20, 50
+text 20, 40, "Falling Letter Game"
+text 20, 80, "Game Over"
+text 20, 120, "Score: " + score
+text 20, 160, "Misses: " + misses
+refresh
+end

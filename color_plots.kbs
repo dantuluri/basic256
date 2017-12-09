@@ -1,0 +1,14 @@
+Graphsize 600,600
+fastgraphics
+clg
+for pic = 1 to 2
+for x= 1 to 600
+for y= 1 to 600
+# try different formulae for color using coordenates x and y
+if pic = 1 then color ((x-300)^2+(y-300)^2)*3
+if pic = 2 then color 300*abs((x-300)/(y-300))
+plot x,y
+next y
+refresh
+next x
+next pic 

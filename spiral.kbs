@@ -1,0 +1,16 @@
+clg
+radius =5
+angle = 1
+do
+gosub polarcoordinates
+radius = radius+0.05
+angle = angle+2
+circle 150+x,150+y,2
+color rand*255,rand*255,rand*255
+until radius>150
+end
+polarcoordinates:
+rad = (angle/180)*pi
+y=(sin (rad))*radius
+x=(cos (rad))*radius
+return

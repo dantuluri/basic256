@@ -1,0 +1,29 @@
+rem parameters are for a geostationary orbit arround earth
+font "arial",10,100
+height = 36000000
+speed=3070
+radius=6371000
+time=0 : scale=400000 :dt=40 :g=9.81
+x=0 : y=radius+height
+px=0:py=0
+xspeed=speed : yspeed=0
+fastgraphics
+loop:
+dist=((x-px)^2 + (y-py)^2)^(1/2)
+gravity= g*(radius/dist)^2
+dx=x-px : dy=y-py
+xac= (dx/dist)*gravity : yac= (dy/dist)*gravity
+xspeed=xspeed-xac*dt : yspeed=yspeed-yac*dt
+x=x+xspeed*dt : y=y+yspeed*dt
+clg
+Text 150 + x/scale,150 + y/scale,"[]o[]"
+circle 150+px,150+py,radius/scale
+time=time+dt
+speed = int(((xspeed)^2 + (yspeed)^2)^(1/2))
+text 10,10,"height = "+dist/radius+"radius"
+text 10,30,"speed = "+speed+"m/s"
+text 10,50,"time = "+int(time/3600)+"h"
+text 10,70,"grav-acc = "+(radius/dist)^2+"g"
+text 10,90,"centri-acc = "+(speed^2/dist)/g+"g"
+refresh
+goto loop 

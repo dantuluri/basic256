@@ -1,0 +1,5 @@
+clg
+For n = 1 to 150
+color 50+n,50+n,50+n
+circle 150,150,150-n
+next n 

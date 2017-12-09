@@ -1,0 +1,37 @@
+#clock
+while true
+clg
+color red
+circle 150,150,105
+#color blue
+#circle 150,150,102
+color white
+circle 150,150,100
+color blue
+circle 150,150,4
+
+#seconds
+color black
+angle = second / 60 * 2 * pi
+line 150,150, 150+100*cos(angle), 150+100*sin(angle)
+
+#minutes
+color darkgreen
+angle = minute / 60 * 2 * pi
+line 150,150, 150+90*cos(angle), 150+90*sin(angle)
+
+#hours
+color darkblue
+angle = hour / 23 * 2 * pi
+line 150,150, 150+60*cos(angle), 150+60*sin(angle)
+
+
+#print second
+#print minute
+#print hour
+
+
+pause 1
+
+end while
+

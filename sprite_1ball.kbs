@@ -1,0 +1,24 @@
+# sprite_1ball.kbs
+color white
+rect 0, 0, graphwidth, graphheight
+spritedim 1
+#spriteload 0, "blueball.png"
+#spriteload 0, "bluebird.jpeg"
+spriteload 0, "blueball.jpeg"
+
+spriteplace 0, 100,100
+spriteshow 0
+dx = rand * 10
+dy = rand * 10
+while true
+  if spritex(0) <=0 or spritex(0) >= graphwidth -1 then
+    dx = dx * -1
+    wavplay "4359__NoiseCollector__PongBlipF4.wav"
+  end if
+  if spritey(0) <= 0 or spritey(0) >= graphheight -1 then
+    dy = dy * -1
+    wavplay "4361__NoiseCollector__pongblipA_3.wav"
+  endif
+  spritemove 0, dx, dy
+  pause .01
+end while

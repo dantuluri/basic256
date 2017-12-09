@@ -1,0 +1,23 @@
+fastgraphics
+clg
+rem wave source coordetanes
+x1=150 : y1= 300 : x2= 0 : y2=0
+for n = 1 to 100 step .2
+For x = 0 to 300 step 5
+For y = 0 to 300 step 5
+d1 = ((x-x1)^2+(y-y1)^2)^0.5
+d2 = ((x-x2)^2+(y-y2)^2)^0.5
+s1=60*sin(d1/5-n)
+s2=60*sin(d2/5-n)
+if 5*n>=d2 then
+color 122+s2,122+s2,122+s2
+else
+color 122+s1,122+s1,122+s1
+end if
+if 5*n>=d1 and 5*n>=d2 then color 122+s1+s2, 122+s1+s2,122+s1+s2
+if 5*n<=d1 and 5*n<=d2 then color grey
+circle x,y,3
+next y
+next x
+refresh
+next n 

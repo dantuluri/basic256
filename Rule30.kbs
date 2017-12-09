@@ -1,0 +1,15 @@
+Rem http://en.wikipedia.org/wiki/Rule_30
+clg
+fastgraphics
+graphsize 900,450
+plot (450,1)
+print pixel (10,10)
+For y = 1 to 450
+For x = 1 to 900
+if pixel (x-1,y-1)=0 and pixel (x,y-1)<>0 and pixel (x+1,y-1)<>0 then plot(x,y)
+if pixel (x-1,y-1)<>0 and pixel (x,y-1)=0 and pixel (x+1,y-1)=0 then plot(x,y)
+if pixel (x-1,y-1)<>0 and pixel (x,y-1)=0 and pixel (x+1,y-1)<>0 then plot(x,y)
+if pixel (x-1,y-1)<>0 and pixel (x,y-1)<>0 and pixel (x+1,y-1)=0 then plot(x,y)
+next x
+refresh
+next y 

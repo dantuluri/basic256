@@ -1,0 +1,119 @@
+#http://forum.basic256.org/index.php?id=47
+
+print "Particle Pointer - by M. Vilain"
+# *************************************************
+# Particle system array
+# *************************************************
+# maximum number of particles slots
+# lower this to get more fluent effect
+max =3000
+# Each particle has 6 parameters
+# 0 : location on the x-axis
+# 1 : location on the y-axis
+# 2 : movement on the x-axis
+# 3 : movement on the y-axis
+# 4 : how old the particle can get
+# 5 : period where particle keeps the same color
+dim particle(max,6)
+# ******************************
+# Boiler plate for a nice canvas
+# ******************************
+graphsize 800, 400
+clg
+fastgraphics
+color black
+rect 0,0,800,400
+# *************************************************
+# pre-cache sin/cos calculations (small speed gain)
+# *************************************************
+dim degree(460,2)
+for i = 0 to 359
+degree[i,0]=sin(i)
+degree[i,1]=cos(i)
+next i
+# *************************************************
+# initial particle definition: all particles 'dead'
+# *************************************************
+for i = 0 to max - 1
+particle[i,4] = 0
+next i
+#**************************************************
+# main loop
+#**************************************************
+loop:
+# create new particles
+# ********************
+# select 7 random particles at each cycle
+# play with this value to get the best result on your computer
+for k = 1 to 7
+spawni=int(rand *max)
+# if age of the random particle = 0, create one
+if particle[spawni,4] = 0 then
+# horizontal location
+particle[spawni,0] = mousex
+# vertical location (starts a bit above the pointer)
+particle[spawni,1] = mousey -5
+# horizontal speed vector
+particle[spawni,2] = degree[int(rand*360),0]/2
+# falling speed vector
+particle[spawni,3] = degree[int(rand*360),1]/2
+# particle age
+particle[spawni,4] = 100+int(rand*150)
+# color aging
+particle [spawni,5] =particle[spawni,4] /5
+end if
+next k
+# update position on ALL live particles
+# *************************************
+for i = 0 to max-1
+# for all live particles
+if particle[i,4] > 0 then
+# calculate the new location
+particle[i,0]= particle[i,0]+ particle[i,2]
+particle[i,1]= particle[i,1]+ particle[i,3]
+# increase the speed of falling
+particle[i,3] = particle[i,3] + rand/10
+# make the particle older
+particle[i,4]= particle[i,4]-1
+# if it hits the bottom, make it bounce up
+# 0=no bounce, 1= full bounce,no damping
+if particle[i,1] >999 then
+particle[i,3] = -particle[i,3]*(rand/2)
+end if
+end if
+next i
+# Color determination of the particle
+#************************************
+for i = 0 to max-1
+# for all live particles
+if particle[i,4] > 0 then
+# color it darkred if less than 20% life left
+if particle[i,4]< particle[i,5] then
+color darkred
+endif
+# color it red if more than 20% life left
+if particle[i,4]> (particle[i,5]) then
+color red
+endif
+# color it orange if more than 40% life left
+if particle[i,4]> (particle[i,5]*2) then
+color orange
+endif
+# color it yellow if more than 60% life left
+if particle[i,4]> (particle[i,5]*3) then
+color yellow
+endif
+# color it white if more than 80% life left
+if particle[i,4]> (particle[i,5]*4) then
+color white
+endif
+# plot all the live particles
+plot particle[i,0], particle[i,1]
+end if
+next i
+# show the new screen
+refresh
+# clear the screen again
+color black
+rect 0,0,800,400
+goto loop

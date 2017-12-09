@@ -1,0 +1,23 @@
+clg
+a=int(rand*5+2)
+b=int(rand*5)+a
+c=int(rand*2+1)
+d=int(rand*5+1)+c
+Print a+" + "+c
+Print b+"    "+d
+w=170 : k=0 : gosub lines
+for n = 0 to 400
+circle rand*130*(a/b),rand*130,1
+circle rand*130+170,rand*130*(c/d),1
+next n
+input "Press enter for the answer", a$
+w=0 : k=169 : gosub lines
+Print "="+(a*d+c*b)+"/"+b*d
+lines:
+for n = 0 to 130 step 130/b
+line n+k,0,n+k,130
+next n
+for n = 0 to 130 step 130/d
+line 0+w,n,130+w,n
+next n
+return

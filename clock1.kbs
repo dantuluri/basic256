@@ -1,0 +1,15 @@
+# textclock.kbs
+fastgraphics
+font "Tahoma", 20, 100
+color blue
+rect 0, 0, 300, 300
+color yellow
+text 0, 0, "Buggy Clock."
+showtime:
+color blue
+rect 100, 100, 200, 100
+color yellow
+text 100, 100, hour + ":" + minute + ":" +second
+refresh
+pause 1.0
+goto showtime

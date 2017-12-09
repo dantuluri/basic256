@@ -1,0 +1,24 @@
+graphsize 600,600
+
+for i = 1 to 1000
+x1=300
+y1=600
+s=290
+angle = 270
+color 127*int(rand*3),127*int(rand*3),127*int(rand*3)
+for b = 1 to 6
+gosub lines
+s=s*.5
+angle = angle + int(rand*5)*45-90
+next b
+next i
+lines:
+r = (angle/180)*pi
+y2=y1 + (sin (r))*s
+x2=x1 - (cos (r))*s
+for n = 1 to 30
+circle (x2*n+x1*(30-n))/30,(y2*n+y1*(30-n))/30,36/b^2
+next n
+x1=x2
+y1=y2
+return

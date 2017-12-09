@@ -1,0 +1,21 @@
+print 1+4
+say "Hello Surya! How are you!"
+print 5+3
+print "Goodbye!"
+
+clg
+color rgb(128,128,128)
+rect 0,0,graphwidth, graphheight
+color red
+circle 100,100,50
+color 255,160,160
+circle 100,100,25
+
+
+x = 10
+drawloop:
+  x = x + 1
+  clg
+  circle x,20,8
+  if x > 290 then end
+  goto drawloop

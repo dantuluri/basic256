@@ -1,0 +1,5 @@
+clg
+For n = 1 to 100
+color int(rand*2)*255,int(rand*2)*255,int(rand*2)*255
+circle rand*300,rand*300,10
+next n 

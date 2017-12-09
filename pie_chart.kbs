@@ -1,0 +1,26 @@
+rem favourite pet pie chart
+font "arial",20,100
+graphsize 600,300
+n=4
+total=0
+dim freq(n)
+dim cumfreq(n+1)
+dim category$(n)
+freq = {23,13,62,45}
+category$ = {"Dog","Fish","Cat","Rabbit"}
+dim arm(6)
+arm = {0,0,1,150,-1,150}
+for p = 0 to n-1
+total = total + freq[p]
+cumfreq[p+1]=total
+next p
+for i = 0 to 2*pi step .01
+for p = 0 to n-1
+if cumfreq[p]/total < i/(2*pi) then
+color cumfreq[p]*500000
+rect 400,p*30+20,20,20
+text 440,p*30+15,category$[p]
+end if
+next p
+stamp 150,150,1,i,arm
+next i

@@ -1,0 +1,36 @@
+clg 
+color green
+#draw a line across the mountain/island so that the line looks like a ocean.
+line 0,300,300,0
+color red
+line 0,300,0,0
+color black
+line 0,0,300,0
+color blue
+line 299,0,299,299
+color purple
+line 0,299,299,299
+color orange
+line 0,0,299,299
+color cyan
+line 150,0,150,299
+color darkgreen
+line 0,150,299,150
+color gray
+line 0,170,299,170
+color darkorange
+line 0,190,299,190
+color darkyellow
+line 0,210,299,210
+color yellow
+line 0,230,300,230
+color darkpurple
+line 0,250,300,250
+color darkcyan
+line 0,270,300,270
+color darkblue
+line 0,290,300,290
+color darkred
+line 0,130,300,130
+color black
+line 0,110,300,110

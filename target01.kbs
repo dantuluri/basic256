@@ -1,0 +1,27 @@
+while true
+
+#forward
+for i = -30 to 30 
+clg
+color red
+circle 150,150,100
+color white
+circle 150,150,60
+color red 
+circle 150+i,150,30
+pause .1
+next i
+
+#backward
+for j = -30 to 30 
+clg
+color red
+circle 150,150,100
+color white
+circle 150,150,60
+color red 
+circle 150-j,150,30
+pause .1
+next j
+
+end while

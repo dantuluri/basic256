@@ -1,0 +1,36 @@
+Rem http://en.wikipedia.org/wiki/Random_walk
+
+clg
+font "arial",20,100
+graphsize 600,450
+fastgraphics
+stepsize=10
+steps=0
+For radius = 20 to 200 step 10
+average=steps/10
+rect 100+ radius*2,450-average,2,average
+print "Radius="+radius;
+print " Average number of steps="+average
+steps=0
+for trial = 1 to 10
+x=0
+y=0
+color grey
+rect 0,0,600,40
+color yellow
+circle 200,200,radius
+color black
+text 10,10,"Trial"+trial
+while x^2+y^2 < radius^2
+steps = steps+1
+a=rand*2*pi
+dx=cos(a)*stepsize
+dy=sin(a)*stepsize
+line 200+x,200+y,200+x+dx,200+y+dy
+circle x+200,y+200,1
+refresh
+x=x+dx
+y=y+dy
+end while
+next trial
+next radius

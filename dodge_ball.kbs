@@ -1,0 +1,60 @@
+# Use "a" and "d" to turn
+# Avoid crashing the arrow
+font "arial",20,100
+fastgraphics
+graphsize 600,600
+dim a(6)
+a = {3,0,5,10,0,10}
+rad = -.6
+px=50
+py=550
+x=550
+y=50
+turn =0
+xspeed1=0
+yspeed1=0
+r=5
+
+for t = 1 to 100000
+dist=((x-px)^2 + (y-py)^2)^(1/2)
+xspeed1=xspeed1-(x-px)*.01/abs(x-px)
+yspeed1=yspeed1-(y-py)*.01/abs(y-py)
+x=x+xspeed1 : y=y+yspeed1
+z = key
+a$="G"
+if z = 65 then a$="L"
+if z = 68 then a$="R"
+if a$="L" and turn>-.2 then
+turn =turn-.05
+else
+turn=turn*.95
+end if
+if a$="R" and turn<.2  then turn =turn+.05
+rad = rad+turn
+yspeed = sin (rad)*4
+xspeed = cos (rad)*4
+py = py + yspeed
+px = px + xspeed
+pause .01
+clg
+color yellow
+rect 0,0,600,600
+color black
+text 100,10,"Points= "+t
+stamp px, py, 2,rad+1.57, a
+circle x,y,r
+refresh
+if px<0 or px > 600 or py < 0 or py > 600 or dist < r then
+text 10,10,"Lost"
+refresh
+end
+end if
+if x<0 or x>600  then
+xspeed1=-xspeed1
+r=r+5
+end if
+if y < 0 or y > 600 then
+yspeed1=-yspeed1
+r=r+5
+end if
+next t

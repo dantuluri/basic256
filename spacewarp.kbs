@@ -1,0 +1,71 @@
+# spacewarp.kbs
+#still not working!
+# The falling space debris game
+balln = 5 # number of balls
+dim ballx(balln) # arrays to hold ball position and speed
+dim bally(balln)
+dim ballspeed(balln)
+ballr = 10 # radius of balls
+minx = ballr # minimum x value for balls
+maxx = graphwidth - ballr # maximum x value for balls
+miny = ballr # minimum y value for balls
+maxy = graphheight - ballr # maximum y value for balls
+score = 0 # initial score
+playerw = 30 # width of player
+playerm = 10 # size of player move
+playerh = 10 # height of player
+playerx = (graphwidth - playerw)/2 # initial position of player
+keyj = asc("J") # value for the 'j' key
+keyk = asc("K") # value for the 'k' key
+keyq = asc("Q") # value for the 'q' key
+growpercent = .20 # random growth - bigger is faster
+speed = .15 # the lower the faster
+print "spacewarp - use j and k keys to avoid the falling space debris"
+print "q to quit"
+fastgraphics
+# setup initial ball positions and speed
+for n = 0 to balln-1
+  gosub setupball
+next n
+
+more = true
+while more
+  pause speed
+  score = score + 1
+  # clear screen
+  color black
+  rect 0, 0, graphwidth, graphheight
+  # draw balls and check for collission
+  color white
+  for n = 0 to balln-1
+    bally[n] = bally[n] + ballspeed[n]
+    if bally[n] > maxy then gosub setupball
+    circle ballx[n], bally[n], ballr
+    if ((bally[n]) >= (maxy-playerh-ballr)) and ((ballx[n]+ballr) >= playerx) and ((ballx[n]-ballr)<=(playerx+playerw)) then
+      more = false
+  next n
+  # draw player
+  color red
+  rect playerx, maxy - playerh, playerw, playerh
+  refresh
+  # make player bigger
+  if (rand<growpercent) then playerw = playerw + 1
+
+  # get player key and move if key pressed
+  k = key
+  if k = keyj then playerx = playerx - playerm
+  if k = keyk then playerx = playerx + playerm
+  if k = keyq then more = false
+  # keep player on screen
+  if playerx < 0 then playerx = 0
+  if playerx > graphwidth - playerw then
+    playerx = graphwidth - playerw
+end while
+print "score " + string(score)
+print "you died."
+end
+setupball:
+bally[n] = miny
+ballx[n] = int(rand * (maxx-minx)) + minx
+ballspeed[n] = int(rand * (2*ballr)) + 1
+return
